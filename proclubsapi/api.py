@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+"""-*- coding: utf-8 -*-"""
 
 import requests
 import json
@@ -16,7 +16,6 @@ class ProClubs():
             self.__plataform = plataform
         else:
             raise Exception('Wrong plataform...')
-
         self.clubs = []
         self.club = {}
 
@@ -31,15 +30,10 @@ class ProClubs():
 
             if (i == 'stats') or (i == 'seasonRank') or (i == 'seasonalStats'):
                 self.club[i] = g['{}'.format(key)]
-            elif (i == 'info'):
+            elif i == 'info':
                 self.club[i] = g[0]
             else:
                 self.club[i] = g
 
     def __get(self, endpoint=None):
         return requests.get('{}{}{}'.format(API_URL, self.__plataform, endpoint)).json()['raw']
-
-
-pC = ProClubs('xboxone')
-pC.searchClubsByName('legends')
-pprint.pprint(pC.clubs)
