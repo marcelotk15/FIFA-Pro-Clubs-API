@@ -22,7 +22,7 @@ class ProClubs():
     def searchClubsByName(self, name):
         clubs = self.__get('/clubsComplete/{}'.format(name))
         for c in clubs:
-            self.clubs.append(clubs[c])    
+            self.clubs.append(clubs[c])
 
     def getClub(self, key, infos=INFOS):
         for i in infos:
