@@ -4,10 +4,7 @@ import requests
 import json
 import array as arr
 import pprint
-
-API_URL = 'https://www.easports.com/iframe/fifa17proclubs/api/platforms/'
-PLATAFORMS = ['PC', 'XBOXONE', 'PS4']
-INFOS = ['info', 'stats', 'matches', 'membersComplete', 'seasonRank', 'seasonalStats']
+from conf.settings import API_URL, PLATAFORMS, INFOS
 
 
 class ProClubs():
@@ -36,4 +33,6 @@ class ProClubs():
                 self.club[i] = g
 
     def __get(self, endpoint=None):
-        return requests.get('{}{}{}'.format(API_URL, self.__plataform, endpoint)).json()['raw']
+        url = '{}{}{}'.format(API_URL, self.__plataform, endpoint)
+
+        return requests.get(url).json()['raw']
